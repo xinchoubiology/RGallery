@@ -27,7 +27,6 @@
 \maketitle
 \section{Q1: Easy level}
 
-s
 
 
 \end{document}
