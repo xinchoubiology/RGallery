@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{minted}
+\usepackage{amsmath,amsthm, amsfonts, array}
+\usepackage{graphicx,booktabs,xcolor,color,soul}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{listings}
+\definecolor{shadecolor}{rgb}{0.95,0.95,0.95}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  urlcolor  = blue,
+  linkcolor = green,
+  citecolor = red
+}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\title{RGallery: A Package for 3 questions in Stochastic Average Gradient Project}
+\author{Xin Zhou}
+\begin{document}
+\maketitle
+\section{Q1: Easy level}
+
+
+
+
+\end{document}
