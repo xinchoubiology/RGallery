@@ -97,8 +97,12 @@ kable(data.frame(t(glmnet_time)), align = "c", col.names = c("user_time/sec", "s
 
 \bigskip
 
-Even though that glmnet analysis time changed slowly with data set size increasing, function \text{mvrnorm()} has become too slow when data size was up to $2000 \times 300$. 
+Even though that glmnet analysis time changed slightly with data set size increasing, function \text{mvrnorm()} has become too slow when data size was up to $2000 \times 300$. 
 
 As the result, I should rewrite our \textbf{mvrnorm} by a C++ function, so that the time consuming in data simulation can be compressed. 
+
+\section{Rcpp accerlation}
+In \textbf{Q3}, mentor give us an example of \text
+
 
 \end{document}
