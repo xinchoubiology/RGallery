@@ -1,9 +1,15 @@
 Package: RGallery
 Type: Package
-Title: What the package does (short line)
+Title: RGallery: A Package for 3 questions in Stochastic Average Gradient Project
 Version: 1.0
 Date: 2015-02-17
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Eric xin Zhou
+Maintainer: Eric xin Zhou <xxz220@miami.edu>
+Description: A test Package for 3 questions in Stochastic Average Gradient Project
+Depends:
+    R (>= 3.1.0),
+    MASS,
+    knitr
+VignetteBuilder: knitr
+LazyData: true
+License: Artistic-2.0

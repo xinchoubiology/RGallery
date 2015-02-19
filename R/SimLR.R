@@ -11,10 +11,11 @@
 ##' @param nsd noise distribution's sd. Default is 1.0
 ##' @param control Optional(TRUE/FALSE), whether control whiten noise and signal's SNR
 ##' @importFrom MASS mvrnorm
+##' @export
 ##' @return x p predictors' matrix for N observation.
 ##' @return y N observation (1 or 0) which is based on real value of y0 and noise.
 ##' @return beta p real beta value
-##' @author Eric xin zhou \url{xxz220@@miami.edu}
+##' @author Eric xin Zhou \url{xxz220@@miami.edu}
 sim_dat_LR <- function(N, p, rho = 0.95, snr = 3.0, nmu = 0.0, nsd = 1.0, control = TRUE){
   # multinormal matrix generation subject to cor(xi,xj) == 0.95
   ## sigma build
@@ -45,7 +46,7 @@ sim_dat_LR <- function(N, p, rho = 0.95, snr = 3.0, nmu = 0.0, nsd = 1.0, contro
   return(list(x = x, y = y, beta0 = beta))
 }
 
-
+# Beta value simulation function
 genBeta <- function(p){
   j <- 1:p
   return((-1)^j * exp(-2*(j-1)/20))
