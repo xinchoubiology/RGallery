@@ -51,5 +51,26 @@ In generation model, we also should simulate the coefficient vector $\beta$, we 
 
 This guarantee that the coefficients are constructed to have alternating signs and to be exponential descreasing.
 
+And in logistical regression model, what we observation is $\mathcal{G}=\{1,2\}$, therefore, the logistic regression model represents the probability we observed $\{1,2\}$.
+
+\begin{equation}
+  \begin{aligned}
+    Pr(G=1|x) = \frac{1}{1+e^{-(\beta_0x_0 + ... + \beta_px_p)}} \\
+    Pr(G=2|x) = \frac{e^{-(\beta_0x_0 + ... + \beta_px_p)}}{1+e^{-(\beta_0x_0 + ... + \beta_px_p)}}
+  \end{aligned}
+\end{equation}
+
+So we can get the column $\log{(\frac{Pr(G=1|X)}{Pr(G=2|X)})} = \sum_{j=1}^p x_j\beta_j$. In this model, if $Pr(G=1|x) > Pr(G=2|x)$, then response is actual 1, otherwise responese is 2.
+
+However, in real observation, noise will be introduced into this regression model. As the result, we should add an $Z \sim \mathcal{N}(0,1)$ into the original LR model. 
+
+So, the response $Y$ we generate comes from Eqn.(4)
+
+\begin{equation}
+  y = \sum_{j=1}^p X_j\beta_j + kZ
+\end{equation}
+
+And we also can tell that $y \rightarrow \beta_0x_0 + ... + \beta_px_p$, therefore, we can determine $Pr(G=1|x) = \frac{1}{1 +e^{-y}}$. And then we will define our observation $Y$ by binomial model which generate $Y$ with $Pr(Y=1)=p$ and $Pr(Y=2)=1-p$.
+
 
 \end{document}
