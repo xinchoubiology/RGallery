@@ -79,7 +79,7 @@ Since \textbf{Q2} require us develop a package. Therefore, I develop a simple pa
 
 And then, to record glmnet time of different data set size, therefore I create a package \href{https://github.com/xinchoubiology/RGallery}{RGallery} to solve this question. 
 
-To solve \textbf{Q1}, if we fixed feature dimension to 300. then we execute \textbf{glmnet()} on different $N$ size data set. And we let $N \in [100, 500, 1000, 2000, 5000, 10000, 100000]$, in addition, I fixed $p = 300$.
+To solve \textbf{Q1}, if we fixed feature dimension to 300. then we execute \textbf{glmnet()} on different $N$ size data set. And we let $N \in [100, 500, 1000, 2000, 5000, 10000, 100000]$, in addition, $p$ is fixed $p = 300$.
 
 <<glmnet-time, echo=TRUE, eval=FALSE>>=
 require(RGallery)
@@ -87,7 +87,7 @@ N <- c(100, 500, 700, 1000, 1500, 2000)
 glmnet_time <- sapply(N, function(n){
                           Gbenchmark(sim_dat_LR, N = n, p = 300)
                          }
-                      )
+                     )
 colnames(glmnet_time) <- N
 @
 
@@ -97,12 +97,38 @@ kable(data.frame(t(glmnet_time)), align = "c", col.names = c("user_time/sec", "s
 
 \bigskip
 
-Even though that glmnet analysis time changed slightly with data set size increasing, function \text{mvrnorm()} has become too slow when data size was up to $2000 \times 300$. 
+Even though that glmnet analysis time changed slightly with data set size increasing, function \textbf{mvrnorm()} has become too slow when data size was up to $2000 \times 300$. 
 
-As the result, I should rewrite our \textbf{mvrnorm} by a C++ function, so that the time consuming in data simulation can be compressed. 
+As the result, I should rewrite our \textbf{mvrnorm()} by a C++ function, so that the time consuming in data simulation can be compressed. 
 
 \section{Rcpp accerlation}
-In \textbf{Q3}, mentor give us an example of \text
+In \textbf{Q3}, mentor give us an example of writing package by \textbf{.C} and \textbf{.Call}. And in this package, I prefer Rcpp, which provides an elegant way to handle Cpp code.
+
+In this Rcpp source file, I apply the Choleski decomposition to execute the function \textbf{cmvrnorm()}. And then, with the help of \textbf{Rcpp}(use .Call in RcppExports.R). We can quickly caculate out $15,000 \times 300$ data set.
+
+<<glmnetfast-time, echo=TRUE, eval=FALSE>>=
+M <- c(100, 500, 700, 1000, 1500, 2000, 4000, 8000, 10000, 15000)
+glmnet_time_c <- sapply(N, function(n){
+                          Gbenchmark(fast_LR_sim, N = n, p = 300)
+                         }
+                     )
+colnames(glmnet_time_c) <- M
+@
+
+<<fastsmallsize-t, echo=FALSE, fig.cap="glmnet time consuming from 100 to 15,000">>=
+kable(data.frame(t(glmnet_time_c)), align = "c", col.names = c("user_time/sec", "sys_time/sec", "elapesd/sec"),booktabs=TRUE)
+@
+
+In addition, we also can draw a relationship map for different data set size and glmnet's elasped time.
+
+<<glmnet_fig, echo=FALSE, eval=TRUE, fig.cap="glment time ~ data size">>=
+library(ggplot2)
+size2time <- data.frame(size = M, elapse = glmnet_time_c[3,])
+ggplot(size2time, aes(x = size, y = elapse)) + geom_smooth(colour = "blue", method = 'lm') + geom_point(colour = "red")
+@
+
+\section{Conclusion}
+In this \code{RGallery} package, I have completed the three questions given on SAG project's homepage. Therefore, I think I can meet mentors requirements and I wish I could work with you for the SAG project!
 
 
 \end{document}
