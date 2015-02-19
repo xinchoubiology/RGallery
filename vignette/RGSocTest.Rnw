@@ -27,7 +27,7 @@
 \maketitle
 \section{3 Problems}
 \begin{description}
-  \item[Q1(easy)] : Use glmnet to fit an L2-regularized logistic regression model. Use the system.time function to record how much time it takes for several data set sizes, and make a plot that shows how execution time depends on the data set size.
+  \item[Q1(easy)] : Use glmnet\cite{friedman2010regularization} to fit an L2-regularized logistic regression model. Use the system.time function to record how much time it takes for several data set sizes, and make a plot that shows how execution time depends on the data set size.
   \item[Q2(medium)] : create a simple R package with one function and one documentation file, and upload it to your GitHub account.
   \item[Q3(hard)] : Harder: \href{https://github.com/tdhock/when-c/blob/master/example-C-Call.org#exercise-for-the-reader}{Write an R package which uses .C to interface C code.}
 \end{description}
@@ -128,7 +128,12 @@ ggplot(size2time, aes(x = size, y = elapse)) + geom_smooth(colour = "blue", meth
 @
 
 \section{Conclusion}
-In this \code{RGallery} package, I have completed the three questions given on SAG project's homepage. Therefore, I think I can meet mentors requirements and I wish I could work with you for the SAG project!
+Improvement next, {\color{blue}RGallery} package can be improvement, my plan is to create a cuda version for the function  \textbf{cmvrnorm}, given that matrix multiplication perform better on GPU, I wish \textbf{cudamvrnorm} could run faster than other \textbf{*mvrnorm} functions.
 
+In this {\color{blue}RGallery} package, I have completed the three questions given on SAG project's homepage. Therefore, I think I can meet mentors requirements and I wish I could work with you for the SAG project!
+
+\bibliography{ref}
+\bibliographystyle{unsrt}
+\newpage
 
 \end{document}

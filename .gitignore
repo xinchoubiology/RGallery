@@ -9,4 +9,7 @@
 *.tex
 *.o
 *.so
+*.blg
+*.bbl
+
 
