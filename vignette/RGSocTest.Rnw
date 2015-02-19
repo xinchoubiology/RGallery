@@ -25,9 +25,11 @@
 \author{Eric Xin Zhou}
 \begin{document}
 \maketitle
-\section{Easy level}
+\section{3 Problems}
 \begin{description}
-  \item[Q1] : Use glmnet to fit an L2-regularized logistic regression model. Use the system.time function to record how much time it takes for several data set sizes, and make a plot that shows how execution time depends on the data set size.
+  \item[Q1(easy)] : Use glmnet to fit an L2-regularized logistic regression model. Use the system.time function to record how much time it takes for several data set sizes, and make a plot that shows how execution time depends on the data set size.
+  \item[Q2(medium)] : create a simple R package with one function and one documentation file, and upload it to your GitHub account.
+  \item[Q3(hard)] : Harder: \href{https://github.com/tdhock/when-c/blob/master/example-C-Call.org#exercise-for-the-reader}{Write an R package which uses .C to interface C code.}
 \end{description}
 
 \subsection{Data simulation setup for L2}
@@ -72,5 +74,31 @@ So, the response $Y$ we generate comes from Eqn.(4)
 
 And we also can tell that $y \rightarrow \beta_0x_0 + ... + \beta_px_p$, therefore, we can determine $Pr(G=1|x) = \frac{1}{1 +e^{-y}}$. And then we will define our observation $Y$ by binomial model which generate $Y$ with $Pr(Y=1)=p$ and $Pr(Y=2)=1-p$.
 
+\section{Build a package for data set generation and time record}
+Since \textbf{Q2} require us develop a package. Therefore, I develop a simple package for LR2's data simulation. And record all of the time on different data set.
+
+And then, to record glmnet time of different data set size, therefore I create a package \href{https://github.com/xinchoubiology/RGallery}{RGallery} to solve this question. 
+
+To solve \textbf{Q1}, if we fixed feature dimension to 300. then we execute \textbf{glmnet()} on different $N$ size data set. And we let $N \in [100, 500, 1000, 2000, 5000, 10000, 100000]$, in addition, I fixed $p = 300$.
+
+<<glmnet-time, echo=TRUE, eval=FALSE>>=
+require(RGallery)
+N <- c(100, 500, 700, 1000, 1500, 2000)
+glmnet_time <- sapply(N, function(n){
+                          Gbenchmark(sim_dat_LR, N = n, p = 300)
+                         }
+                      )
+colnames(glmnet_time) <- N
+@
+
+<<smallsize-t, echo=FALSE>>=
+kable(data.frame(t(glmnet_time)), align = "c", col.names = c("user_time/sec", "sys_time/sec", "elapesd/sec"),booktabs=TRUE)
+@
+
+\bigskip
+
+Even though that glmnet analysis time changed slowly with data set size increasing, function \text{mvrnorm()} has become too slow when data size was up to $2000 \times 300$. 
+
+As the result, I should rewrite our \textbf{mvrnorm} by a C++ function, so that the time consuming in data simulation can be compressed. 
 
 \end{document}
