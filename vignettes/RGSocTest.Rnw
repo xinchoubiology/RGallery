@@ -116,6 +116,7 @@ colnames(glmnet_time_c) <- M
 @
 
 <<fastsmallsize-t, echo=FALSE, fig.cap="glmnet time consuming from 100 to 15000">>=
+library(knitr)
 kable(data.frame(t(glmnet_time_c)), align = "c", col.names = c("user_time/sec", "sys_time/sec", "elapesd/sec"),booktabs=TRUE)
 @
 

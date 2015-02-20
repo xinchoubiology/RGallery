@@ -4,7 +4,7 @@
 \alias{cmvrnorm}
 \title{cmvrnorm}
 \usage{
-cmvrnorm(n = 1, mu, Sigma)
+cmvrnorm(n, mu, Sigma)
 }
 \arguments{
 \item{n}{the number of samples required. Default 1.}

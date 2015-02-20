@@ -6,7 +6,6 @@ using namespace Rcpp;
 //' 
 //' @title cmvrnorm
 //' @description Produces one or more samples from specified multivariate normal distribution by C-plus-plus
-//' @usage cmvrnorm(n = 1, mu, Sigma)
 //' @param n the number of samples required. Default 1.
 //' @param mu a vector giving the means of variables.
 //' @param Sigma a positive-definite symmetric specifying the covariance matrix of variabless
