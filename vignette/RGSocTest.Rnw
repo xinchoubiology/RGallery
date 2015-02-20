@@ -115,14 +115,14 @@ glmnet_time_c <- sapply(N, function(n){
 colnames(glmnet_time_c) <- M
 @
 
-<<fastsmallsize-t, echo=FALSE, eval=FALSE, fig.cap="glmnet time consuming from 100 to 15000">>=
+<<fastsmallsize-t, echo=FALSE, fig.cap="glmnet time consuming from 100 to 15000">>=
 library(knitr)
 kable(data.frame(t(glmnet_time_c)), align = "c", col.names = c("user_time/sec", "sys_time/sec", "elapesd/sec"),booktabs=TRUE)
 @
 
 In addition, we also can draw a relationship map for different data set size and glmnet's elasped time.
 
-<<glmnet_fig, echo=FALSE, eval=FALSE, fig.cap="glment time ~ data size">>=
+<<glmnet_fig, echo=FALSE, fig.cap="glment time ~ data size">>=
 library(ggplot2)
 size2time <- data.frame(size = M, elapse = glmnet_time_c[3,])
 ggplot(size2time, aes(x = size, y = elapse)) + geom_smooth(colour = "blue", method = 'lm') + geom_point(colour = "red")
