@@ -22,7 +22,7 @@ before_install:
 
 install:
   - ./travis-tool.sh install_aptget r-cran-runit r-cran-inline r-cran-rbenchmark r-cran-highlight r-cran-pkgkitten
-  - ./travis-tool.sh install_r glmnet knitr Rcpp RcppArmadillo
+  - ./travis-tool.sh install_r glmnet knitr Rcpp RcppArmadillo ggplot2
 
 script: 
   - ./travis-tool.sh run_tests
