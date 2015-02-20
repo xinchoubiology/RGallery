@@ -1,1 +1,5 @@
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+endif
